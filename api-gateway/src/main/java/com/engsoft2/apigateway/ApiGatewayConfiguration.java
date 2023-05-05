@@ -12,14 +12,17 @@ public class ApiGatewayConfiguration {
 		return builder.routes()
 				.route(p -> p.path("/currency-exchange/**")
 						.filters(f -> f.circuitBreaker(
-								c -> c.setName("circuitbreaker").setFallbackUri("forward:/error-handler")))
+								c -> c.setName("circuitbreaker")
+										.setFallbackUri("forward:/error-handler")))
 						.uri("lb://currency-exchange"))
 				.route(p -> p.path("/currency-conversion/**")
 						.filters(f -> f.circuitBreaker(
-								c -> c.setName("circuitbreaker").setFallbackUri("forward:/error-handler")))
+								c -> c.setName("circuitbreaker")
+										.setFallbackUri("forward:/error-handler")))
 						.uri("lb://currency-conversion"))
 				.route(p -> p.path("/currency-conversion-feign/**").filters(f -> f
-						.circuitBreaker(c -> c.setName("circuitbreaker").setFallbackUri("forward:/error-handler")))
+						.circuitBreaker(c -> c.setName("circuitbreaker")
+								.setFallbackUri("forward:/error-handler")))
 						.uri("lb://currency-conversion"))
 				.build();
 	}
