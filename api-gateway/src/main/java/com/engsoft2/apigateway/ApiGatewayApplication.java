@@ -12,13 +12,7 @@ import reactor.core.publisher.Mono;
 @SpringBootApplication
 public class ApiGatewayApplication {
 
-	@Autowired
-	private CircuitBreaker circuitBreaker;
 
-	@RequestMapping("/currency-conversion")
-	public Mono<String> readingList() {
-		return circuitBreaker.readingList();
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiGatewayApplication.class, args);
